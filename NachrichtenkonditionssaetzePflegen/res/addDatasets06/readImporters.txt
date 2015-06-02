@@ -1,0 +1,25 @@
+Dim scroll
+Dim importer
+Dim row
+scroll = 0
+row = 0
+session.findById("wnd[0]/usr/tblSAPMV13BTCTRL_FAST_ENTRY").verticalScrollbar.position = scroll
+Do
+	importer = session.findById("wnd[0]/usr/tblSAPMV13BTCTRL_FAST_ENTRY/ctxtKOMB-KUNNR[0,"&row&"]").text
+	If importer="" Then	
+		Exit Do
+	End If
+	WScript.Echo importer
+	row = row+1
+Loop While row < lastRow
+If row = lastRow Then
+	Do
+		scroll = scroll + 1
+		session.findById("wnd[0]/usr/tblSAPMV13BTCTRL_FAST_ENTRY").verticalScrollbar.position = scroll
+		importer = session.findById("wnd[0]/usr/tblSAPMV13BTCTRL_FAST_ENTRY/ctxtKOMB-KUNNR[0,"&row-1&"]").text
+		If importer="" Then	
+			Exit Do
+		End If
+		WScript.Echo importer
+	Loop While true	
+End If

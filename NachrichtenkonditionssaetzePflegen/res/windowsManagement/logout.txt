@@ -1,0 +1,4 @@
+session.findbyid("wnd[0]").close
+session.findById("wnd[1]/usr/btnSPOP-OPTION1").press
+
+
